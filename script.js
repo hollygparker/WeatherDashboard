@@ -1,9 +1,10 @@
-// * var geocode =  'http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}'
+// * var geocode =  'http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid=c0ff6f5d40451857dcf907d773d1869d'
 // todo input the lat/lon returned from geocode into requestUrl
-// * var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}'
+// * var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid=c0ff6f5d40451857dcf907d773d1869d'
 
 var container = document.getElementById('container')
 var cities = document.getElementById('cities')
+var searchForm = document.getElementById('searchForm')
 var search = document.getElementById('search')
 var preset = document.getElementById('preset')
 var city0 = document.getElementById('city0')
@@ -47,3 +48,41 @@ var date4 = document.getElementById('date4')
 var temp4 = document.getElementById('temp4')
 var wind4 = document.getElementById('wind4')
 var humidity4 = document.getElementById('humidity4')
+
+function getWeather() {
+    // Insert the API url to get a list of your repos
+    var geocode = "http://api.openweathermap.org/geo/1.0/direct?q=" + search.value + "&limit=1&appid=c0ff6f5d40451857dcf907d773d1869d"
+    // * var latLon = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat.value + "&lon=" + lon.value "&exclude={part}&appid=c0ff6f5d40451857dcf907d773d1869d"
+  
+    fetch(geocode)
+      .then(function (response) {
+          console.log(response)
+        return response.json();
+      })
+      .then(function (response) {
+        //looping over the fetch response and inserting the URL of your repos into a list
+        console.log(response)
+        console.log(response.data.length)
+        for (var i = 0; i < response.data.length; i++) {
+            // console.log(response[i].name)
+          //Create a list element
+          var gif = document.createElement('img')
+
+  
+          //Set the text of the list element to the JSON response's .html_url property
+          gif.src = response.data[i].images.downsized.url
+
+          var gifTitle = document.createElement('h3')
+          gifTitle.textContent = response.data[i].title
+          console.log(gifTitle)
+          
+          
+  
+          //Append the li element to the id associated with the ul element.
+          favorites.appendChild(gif)
+        //   console.log('.favorites')
+
+          favorites.appendChild(gifTitle)
+        }
+      })
+  }
