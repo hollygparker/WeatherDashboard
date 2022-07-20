@@ -6,6 +6,7 @@ var container = document.getElementById('container')
 var cities = document.getElementById('cities')
 var searchForm = document.getElementById('searchForm')
 var search = document.getElementById('search')
+var searchBtn = document.querySelector('searchBtn')
 var preset = document.getElementById('preset')
 var city0 = document.getElementById('city0')
 var city1 = document.getElementById('city1')
@@ -57,6 +58,7 @@ function getWeather() {
     fetch(geocode)
       .then(function (response) {
           console.log(response)
+          console.log('hi!')
         return response.json();
       })
     //   .then(function (response) {
@@ -86,3 +88,5 @@ function getWeather() {
     //     }
     //   })
   }
+
+  searchBtn.addEventListener('click', getWeather)
