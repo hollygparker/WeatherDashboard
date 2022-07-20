@@ -59,30 +59,30 @@ function getWeather() {
           console.log(response)
         return response.json();
       })
-      .then(function (response) {
-        //looping over the fetch response and inserting the URL of your repos into a list
-        console.log(response)
-        console.log(response.data.length)
-        for (var i = 0; i < response.data.length; i++) {
-            // console.log(response[i].name)
-          //Create a list element
-          var gif = document.createElement('img')
+    //   .then(function (response) {
+    //     //looping over the fetch response and inserting the URL of your repos into a list
+    //     console.log(response)
+    //     console.log(response.data.length)
+    //     for (var i = 0; i < response.data.length; i++) {
+    //         console.log(response[i].name)
+    //       Create a list element
+    //       var gif = document.createElement('img')
 
   
-          //Set the text of the list element to the JSON response's .html_url property
-          gif.src = response.data[i].images.downsized.url
+    //       //Set the text of the list element to the JSON response's .html_url property
+    //       gif.src = response.data[i].images.downsized.url
 
-          var gifTitle = document.createElement('h3')
-          gifTitle.textContent = response.data[i].title
-          console.log(gifTitle)
+    //       var gifTitle = document.createElement('h3')
+    //       gifTitle.textContent = response.data[i].title
+    //       console.log(gifTitle)
           
           
   
-          //Append the li element to the id associated with the ul element.
-          favorites.appendChild(gif)
-        //   console.log('.favorites')
+    //       //Append the li element to the id associated with the ul element.
+    //       favorites.appendChild(gif)
+    //     //   console.log('.favorites')
 
-          favorites.appendChild(gifTitle)
-        }
-      })
+    //       favorites.appendChild(gifTitle)
+    //     }
+    //   })
   }
