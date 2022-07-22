@@ -1,4 +1,4 @@
-var search = document.getElementById("search");
+// var search = document.getElementById("search");
 // var searchBtn = document.querySelector("#searchBtn")
 
 // boiler plate adding date function
@@ -33,7 +33,14 @@ function getWeather() {
     }
   } else {
     console.log("no history, rainy days forever");
-  }
+  }if (event === undefined){
+    var cityName = localStorage.getItem("city");
+  if (cityName === null){
+
+         cityName = "Chicago"
+    }
+    initValue = true;
+}
 
   // if the element is a UL
   if (event.target.nodeName === "UL") {
@@ -78,14 +85,14 @@ function getWeather() {
         currentDate = mm + "/" + dd + "/" + yyyy;
         // if the search is from the history pane
         if (
-          !localStorageEL &&
+          !localStorageEL && !initValue &&
           !searchHistory.includes(search.value)
         ) {
           // calling function to handing styling
           historyELstyle(search.value, searchHistoryEl);
           // pushing input in text box to search history
           searchHistory.push(search.value);
-          // setting  history arr tolocal storage
+          // setting  history arr to local storage
           localStorage.setItem("history", JSON.stringify(searchHistory));
         }
         // setting name of city to local storage

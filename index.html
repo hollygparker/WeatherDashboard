@@ -5,28 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <header>Weather Dashboard</header>
-    <div id="container">
-        <div id="cities">
-            <form id="searchForm">
-                <input type="text" id="search" placeholder="search by city">
-            </form>
-            <button id="searchBtn">
-                get weather
-            </button>
-            <!-- <div id="history">
-                <div id="city0"></div>
-                <div id="city1"></div>
-                <div id="city2"></div>
-                <div id="city3"></div>
-                <div id="city4"></div>
-                <div id="city5"></div>
-                <div id="city6"></div>
-                <div id="city7"></div>
-            </div> -->
+    <div class="row">
+        <div class="col-md-12"><header class="text-center display-4">Weather Dashboard</header></div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row" id="cities">
+            <div class="col-sm-4 col-md-4 panel panel-default mt-3 mb-2" style="background-color: lightblue;">
+                <form id="searchForm">
+                    <input type="text" id="search" placeholder="search by city" class="m-2">
+                </form>
+                <button id="searchBtn" class=" ml-2 mb-2 btn-success">
+                    Get Weather
+                </button>
+            </div>
+            
+            <!-- SEARCH HISTORY -->
             <div class="card" style="width: 95%;">
                 <ul class="list-group list-group-flush" id="searchHistory">
                 </ul>
