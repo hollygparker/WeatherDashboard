@@ -144,7 +144,7 @@ function getWeather() {
               $("#uv").css("color", "white");
             } else if (uv <= 8) {
               $("#uv").css("background-color", "lightyellow");
-              $("#uv").css("color", "white");
+              $("#uv").css("color", "black");
             } else {
               $("#uv").css("background-color", "pink");
             }
