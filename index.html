@@ -16,12 +16,14 @@
     <div class="container-fluid">
         <div class="row" id="cities">
             <div class="col-sm-4 col-md-4 panel panel-default mt-3 mb-2" style="background-color: lightblue;">
-                <form id="searchForm">
-                    <input type="text" id="search" placeholder="search by city" class="m-2">
-                </form>
-                <button id="searchBtn" class=" ml-2 mb-2 btn-success">
-                    Get Weather
-                </button>
+                <div class="panel-body">
+                    <form id="searchForm">
+                        <input type="text" id="search" placeholder="search by city" class="m-2">
+                    </form>
+                    <button id="searchBtn" class=" ml-2 mb-2 btn-success">
+                        Get Weather
+                    </button>
+                </div>
             </div>
             
             <!-- SEARCH HISTORY -->
@@ -31,13 +33,15 @@
                 <button type="button" id="eraseCityHistory" class="btn-danger btn-sm btn-block">Clear Cities</button>
             </div>
         </div>
-        <div id="forecast">
-            <div id="today">
-                <h2 id="cityDate"></h2>
-                <p>Temp: <span id="temp"></span></p>
-                <p>Wind: <span id="wind"></span></p>
-                <p>Humidity: <span id="humidity"></span></p>
-                <div>UV Index: <span id="uv"></span></div>
+        <div id="forecast" class="col-md-8">
+            <div id="today" class="row">
+                <div class="card mx-auto my-1  main" style="width:95%">
+                    <h2 id="cityDate"></h2>
+                    <p>Temp: <span id="temp"></span></p>
+                    <p>Wind: <span id="wind"></span></p>
+                    <p>Humidity: <span id="humidity"></span></p>
+                    <div>UV Index: <span id="uv"></span></div>
+                </div>
             </div>
 
             <!-- FORECAST -->
