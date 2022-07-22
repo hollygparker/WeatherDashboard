@@ -35,10 +35,6 @@ function getWeather() {
     console.log("no history, rainy days forever");
   }if (event === undefined){
     var cityName = localStorage.getItem("city");
-  if (cityName === null){
-
-         cityName = "Chicago"
-    }
     initValue = true;
 }
 
