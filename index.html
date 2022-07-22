@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <header id="header">Weather Dashboard</header>
+    <header>Weather Dashboard</header>
     <div id="container">
         <div id="cities">
             <form id="searchForm">
@@ -17,7 +17,7 @@
             <button id="searchBtn">
                 get weather
             </button>
-            <div id="history">
+            <!-- <div id="history">
                 <div id="city0"></div>
                 <div id="city1"></div>
                 <div id="city2"></div>
@@ -26,6 +26,11 @@
                 <div id="city5"></div>
                 <div id="city6"></div>
                 <div id="city7"></div>
+            </div> -->
+            <div class="card" style="width: 95%;">
+                <ul class="list-group list-group-flush" id="searchHistory">
+                </ul>
+                <button type="button" id="eraseCityHistory" class="btn-danger btn-sm btn-block">Clear Cities</button>
             </div>
         </div>
         <div id="forecast">
