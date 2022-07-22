@@ -15,40 +15,40 @@ Date.prototype.addDays = function (days) {
 
 // Getting weather based on click handling both api for current day and forecast weather
 function getWeather() {
-        // setting var for history side pane 
-        var searchHistoryEl = $("#searchHistory");
-        var searchHistory = [];
-        // to start off it is not a local storage element
-        var localStorageEL;
-        var initValue;
-        var input;
-        // GETTING from local storage
-        var cityHistory = localStorage.getItem("history");
-        if (cityHistory !== null){
-            searchHistory = JSON.parse(cityHistory);
-            if (searchHistoryEl.children().length === 0){
-                // looping over search history and styling them
-                for(var i=0; i<searchHistory.length; i++){
-                    historyELstyle(searchHistory[i],searchHistoryEl);
-                }
-            }
-        } else {
-            console.log("no history, rainy days forever")
-        }
+  // setting var for history side pane
+  var searchHistoryEl = $("#searchHistory");
+  var searchHistory = [];
+  // to start off it is not a local storage element
+  var localStorageEL;
+  var initValue;
+  // GETTING from local storage
+  var cityHistory = localStorage.getItem("history");
+  if (cityHistory !== null) {
+    searchHistory = JSON.parse(cityHistory);
+    if (searchHistoryEl.children().length === 0) {
+      // looping over search history and styling them
+      for (var i = 0; i < searchHistory.length; i++) {
+        historyELstyle(searchHistory[i], searchHistoryEl);
+      }
+    }
+  } else {
+    console.log("no history, rainy days forever");
+  }
 
-    // if the element is a UL
-        if ((event.target).nodeName === "UL"){
-            // YES to local storage el since its from history
-            localStorageEL = true
-            // update the city name to the targetted one
-            var cityName = event.target.textContent;
-        }
-    //   if el is a btn, meaning if they click get weather
-        else if ((event.target).nodeName === "BUTTON") {
-            inputField = $("#search")
-           
-            var cityName = inputField[0].value
-        }
+  // if the element is a UL
+  if (event.target.nodeName === "UL") {
+    // YES to local storage el since its from history
+    localStorageEL = true;
+    // update the city name to the targetted one
+    var cityName = event.target.textContent;
+  }
+  //  if el is a btn, meaning if they click get weather
+  else if (event.target.nodeName === "BUTTON") {
+    inputField = $("#search");
+    // setting city name to history element clicked on
+    var cityName = inputField[0].value;
+  }
+
   var apiKey = "c0ff6f5d40451857dcf907d773d1869d";
   var cityName = search.value;
   var currentDateAPI =
@@ -76,6 +76,20 @@ function getWeather() {
         var mm = String(currentDate.getMonth() + 1).padStart(2, "0");
         var yyyy = currentDate.getFullYear();
         currentDate = mm + "/" + dd + "/" + yyyy;
+        // if the search is from the history pane
+        if (
+          !localStorageEL &&
+          !searchHistory.includes(search.value)
+        ) {
+          // calling function to handing styling
+          historyELstyle(search.value, searchHistoryEl);
+          // pushing input in text box to search history
+          searchHistory.push(search.value);
+          // setting  history arr tolocal storage
+          localStorage.setItem("history", JSON.stringify(searchHistory));
+        }
+        // setting name of city to local storage
+        localStorage.setItem("city", search.value);
 
         // forecast api url
         var forecastAPI =
@@ -85,19 +99,6 @@ function getWeather() {
           lon +
           "&exclude=minutely,hourly&units=imperial&appid=" +
           apiKey;
-
-        // if the search is from the history pane 
-          if ((!localStorageEL)&&(!initValue)&&(!searchHistory.includes(search.value))){
-            // calling function to handing styling
-            historyELstyle(search.value,searchHistoryEl);
-            // pushing input in text box to search history
-            searchHistory.push(search.value);
-            // setting  history arr tolocal storage
-            localStorage.setItem("history",JSON.stringify(searchHistory));
-        }
-        // setting name of city to local storage
-        localStorage.setItem("city",search.value);
-
 
         // making call to forecast api
         $.ajax({
@@ -169,7 +170,7 @@ function getWeather() {
               // appending windspeed
               var wind = currentDay.wind_speed;
               $("#wind" + i).text("Wind Speed: " + wind + " mph");
-            // handling uv index and color changes for forecast
+              // handling uv index and color changes for forecast
               var uv = currentDay.uvi;
               $("#uv" + i).text(uv);
               $("#uv" + i).css("color", "white");
@@ -191,20 +192,19 @@ function getWeather() {
   );
 }
 
-function historyELstyle(name,historyList){
-    var search = $("<ul>");
-    search.addClass("list-group-item");
-    
-    search.text(name);
-    historyList.append(search);
+function historyELstyle(name, historyList) {
+  var search = $("<ul>");
+  search.addClass("list-group-item");
+
+  search.text(name);
+  historyList.append(search);
 }
 
-
 function eraseCityWeather() {
-    console.log("ERRASEDDD")
-    localStorage.removeItem("history");
-    $("#searchHistory").empty();
-    getWeatherData();
+  console.log("ERRASEDDD");
+  localStorage.removeItem("history");
+  $("#searchHistory").empty();
+  getWeatherData();
 }
 
 // Event listeners for clicks
